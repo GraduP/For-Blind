@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/editID"
+            android:layout_width="370dp"
+            android:layout_height="80dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:hint="아이디" />
+
+
+        <EditText
+            android:id="@+id/editPW"
+            android:layout_width="370dp"
+            android:layout_height="80dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:hint="비밀번호"/>
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:text="로그인"
+        />
+
+
+</LinearLayout>

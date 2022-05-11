@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import retrofit2.Call;
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         mTextTv = findViewById(R.id.textTv);
         mVoiceBtn = findViewById(R.id.voiceBtn);
@@ -138,7 +140,8 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
                 public void onResponse(Call<Transfer> call, Response<Transfer> response) {
 
                     if (response.isSuccessful() && response.body() != null) {
-                        List<PathItem> pathItemList = Optional.ofNullable(response.body().getTmsgBody().getItemList().get(0).getPathItemList()).orElseGet(() -> new ArrayList<>());
+                        List<TransferItem> transferItems = Optional.ofNullable(response.body().getTmsgBody().getItemList()).orElseGet(null);
+                        List<PathItem> pathItemList = Optional.ofNullable(transferItems.get(0).getPathItemList()).orElseGet(null);
 
                         List<Double> fx = pathItemList.stream().map(pathItem -> pathItem.getFx()).collect(Collectors.toList());
                         List<Double> fy = pathItemList.stream().map(pathItem -> pathItem.getFy()).collect(Collectors.toList());

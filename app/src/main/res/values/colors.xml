@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimaryDark">#095049</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="WhatsAppColor">#0b6156</color>
+    <color name="Red">#9F0B0B</color>
+    <color name="status_background">#009688</color>
+    <color name="Chat_Background">#8BC34A</color>
+    <color name="fb_color">#3c5793</color>
+    <color name="yello">#ffc72c</color>
+    <color name="lightgray">#EDEDED</color>
 </resources>

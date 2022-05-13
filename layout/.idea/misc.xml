@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.367" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/about.xml" value="0.316" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/blind_login.xml" value="0.316" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/bus_login.xml" value="0.316" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/ic_google.xml" value="0.316" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/ic_launcher_background.xml" value="0.367" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/ic_location.xml" value="0.316" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/item_stroke.xml" value="0.22" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/main_btn.xml" value="0.367" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/drawable/sub_btn.xml" value="0.281" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout-land/activity_main.xml" value="0.2804232804232804" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.2484375" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/blindform.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/blindmain.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/busform.xml" value="0.25" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/busmain.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/camera.xml" value="0.22" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/dialog.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/login.xml" value="0.22" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/map.xml" value="0.1875" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/newline.xml" value="0.25" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/recyclerviewitem.xml" value="0.33" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/saveline.xml" value="0.21" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/si.xml" value="0.31666666666666665" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/signup.xml" value="0.3487179487179487" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/layout/so.xml" value="0.5" />
+        <entry key="..\:/Users/my/AndroidStudioProjects/layout/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1955" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

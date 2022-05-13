@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/black"
+    android:gravity="center"
+    >
+    <!-->tools:context=".SignUpActivity" <!-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/bus"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtUsername"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:ems="10"
+                android:hint="이름"
+                android:inputType="textPersonName"
+                android:backgroundTint="@color/yello"
+                android:textColor="@color/yello"
+                android:textColorHint="@color/yello"
+                android:padding="15dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/txtEmail"
+                android:ems="10"
+                android:hint="이메일"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
+                android:backgroundTint="@color/yello"
+                android:textColor="@color/yello"
+                android:textColorHint="@color/yello"/>
+
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="비밀번호"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:backgroundTint="@color/yello"
+                android:textColor="@color/yello"
+                android:textColorHint="@color/yello" />
+
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:padding="15dp"
+                android:text="회원가입"
+                android:background="@drawable/sub_btn"
+                android:textColor="@color/yello"
+                android:textColorHint="@color/yello"
+                android:textAllCaps="false"
+                app:cornerRadius="80dp" />
+
+            <TextView
+                android:id="@+id/txtAlreadyHaveAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:padding="12dp"
+                android:text="이미 계정이 있으신가요?"
+                android:textColor="@color/yello"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    >
+
+        <ImageView
+            android:id="@+id/end_mic"
+            android:layout_width="150dp"
+            android:layout_height="215dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="200dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/speak" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="215dp"
+            android:layout_height="215dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="200dp"
+            android:autoSizeMaxTextSize="40dp"
+            android:autoSizeMinTextSize="30dp"
+            android:gravity="center"
+            android:hint="도착지를 입력하세요"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@color/yello"
+            android:textColorHint="@color/yello"
+            app:layout_constraintLeft_toRightOf="@id/end_mic"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="390dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/sub_btn"
+        android:shadowColor="@color/yellow_shadow"
+        android:text="검색"
+        android:textColor="@color/yello"
+        android:textSize="35dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

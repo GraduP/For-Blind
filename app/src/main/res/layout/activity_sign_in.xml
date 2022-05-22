@@ -67,7 +67,7 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignIn"
             android:layout_width="150dp"
             android:layout_height="50dp"

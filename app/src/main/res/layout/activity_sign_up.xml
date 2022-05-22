@@ -63,7 +63,7 @@
             android:textColor="@color/yello"
             android:textColorHint="@color/yello" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"
             android:layout_width="150dp"
             android:layout_height="50dp"

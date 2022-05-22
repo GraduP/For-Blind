@@ -16,4 +16,6 @@
     <color name="fb_color">#3c5793</color>
     <color name="yello">#ffc72c</color>
     <color name="lightgray">#EDEDED</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="yellow_shadow">#CDCD00</color>
 </resources>

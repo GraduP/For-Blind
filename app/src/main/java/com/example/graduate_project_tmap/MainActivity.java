@@ -35,6 +35,9 @@ import com.example.graduate_project_tmap.bus.transfer.PathItem;
 import com.example.graduate_project_tmap.bus.transfer.RetrofitTransferClient;
 import com.example.graduate_project_tmap.bus.transfer.Transfer;
 import com.example.graduate_project_tmap.bus.transfer.TransferItem;
+import com.example.graduate_project_tmap.routes.Route;
+import com.example.graduate_project_tmap.routes.RouteApi;
+import com.example.graduate_project_tmap.routes.RouteClient;
 import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapMarkerItem;
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
     private RetrofitAPI retrofitAPI;
     private com.example.graduate_project_tmap.bus.transfer.TransferAPI TransferAPI;
     private com.example.graduate_project_tmap.bus.arrival.ArrivalAPI ArrivalAPI;
+    private RouteApi routeApi;
 
     TMapView tMapView = null;
     TMapGpsManager tMapGPS = null;
@@ -85,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
     TextView mTextTv;
     ImageButton mVoiceBtn;
     Button mTransferBtn;
+    Button mRouteBtn;
     TMapPoint Destination_Point;
     TMapMarkerItem startItem;
 
@@ -97,11 +102,11 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
         mTextTv = findViewById(R.id.textTv);
         mVoiceBtn = findViewById(R.id.voiceBtn);
         mTransferBtn = findViewById(R.id.transferBtn);
+        mRouteBtn = findViewById(R.id.route);
 
 
         showTmap();
         forGps();
-
 
         mVoiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +126,13 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
             @Override
             public void onClick(View view) {
                 Transfer_InFo();
+            }
+        });
+
+        mRouteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RouteInfo();
             }
         });
 
@@ -260,6 +272,29 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
                     Toast.makeText(MainActivity.this, "network failure", Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+    }
+
+    private void RouteInfo() { //ArsId
+
+        RouteClient routeClient = RouteClient.getInstance();
+
+        if (routeClient != null) {
+            routeApi = RouteClient.getRouteApi();
+            routeApi.getRoutes("1", startX, startY, endX, endY, "출발지", "도착지").enqueue(new Callback<Route>() {
+                @Override
+                public void onResponse(Call<Route> call, Response<Route> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        Log.d(TAG, "onResponse: " + response.body().getType());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Route> call, Throwable t) {
+                    Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
     }
 

@@ -5,9 +5,10 @@ import com.example.graduate_project_tmap.bus.MsgHeader;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Arrival {   @SerializedName("comMsgHeader")
-@Expose
-private ComMsgHeader comMsgHeader;
+public class Arrival {
+    @SerializedName("comMsgHeader")
+    @Expose
+    private ComMsgHeader comMsgHeader;
     @SerializedName("msgHeader")
     @Expose
     private MsgHeader msgHeader;

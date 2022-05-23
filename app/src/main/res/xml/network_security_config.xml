@@ -4,5 +4,8 @@
         <domain includeSubdomains="true">
             ws.bus.go.kr
         </domain>
+        <domain includeSubdomains="true">
+            apis.openapi.sk.com
+        </domain>
     </domain-config>
 </network-security-config>

@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BlindForm extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class BlindForm extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
+        user = new HashMap<>();
 
         Button blindFormBtn = (Button) findViewById(R.id.blindFormBtn);
         blindFormBtn.setOnClickListener(new View.OnClickListener(){

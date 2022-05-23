@@ -9,7 +9,6 @@ public class Route {
 
     @SerializedName("type")
     @Expose
-
     String type;
 
     @SerializedName("features")

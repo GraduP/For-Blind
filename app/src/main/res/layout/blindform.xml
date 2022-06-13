@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
+
     <EditText
         android:id="@+id/blindName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/yello"
         android:ems="10"
         android:hint="이름을 입력하세요"
@@ -22,10 +24,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/blindEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/yello"
+        android:ems="10"
+        android:hint="이메일을 입력하세요"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
+        android:textColor="@color/yello"
+        android:textColorHint="@color/yello"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/blindPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="208dp"
+        android:backgroundTint="@color/yello"
+        android:ems="10"
+        android:hint="비밀번호를 입력하세요"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:textColor="@color/yello"
+        android:textColorHint="@color/yello"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/blindAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="168dp"
         android:backgroundTint="@color/yello"
         android:ems="10"
         android:hint="나이를 입력하세요"
@@ -40,7 +73,7 @@
         android:id="@+id/blindSex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="@color/yello"
         android:ems="10"
         android:hint="성별을 입력하세요"
@@ -51,20 +84,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/blindAge" />
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/blindFormBtn"
-        android:layout_width="390dp"
-        android:layout_height="65dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/sub_btn"
-        android:shadowColor="@color/yellow_shadow"
-        android:text="제출"
+        android:padding="15dp"
+        android:text="회원가입"
+        android:textAllCaps="false"
         android:textColor="@color/yello"
-        android:textSize="35dp"
+        android:textColorHint="@color/yello"
+        app:cornerRadius="80dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/blindAlreadyHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:padding="12dp"
+        android:text="이미 계정이 있으신가요?"
+        android:textColor="@color/yello"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="243dp"
+        tools:layout_editor_absoluteY="498dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

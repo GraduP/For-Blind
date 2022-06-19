@@ -38,6 +38,8 @@ import com.example.graduate_project_tmap.bus.transfer.TransferItem;
 import com.example.graduate_project_tmap.routes.Route;
 import com.example.graduate_project_tmap.routes.RouteApi;
 import com.example.graduate_project_tmap.routes.RouteClient;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapMarkerItem;
@@ -45,6 +47,19 @@ import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapPolyLine;
 import com.skt.Tmap.TMapView;
 
+import org.json.JSONException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -90,8 +105,15 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
     ImageButton mVoiceBtn;
     Button mTransferBtn;
     Button mRouteBtn;
+    Button mPathBtn;
     TMapPoint Destination_Point;
+    TMapPoint stationPoint;
     TMapMarkerItem startItem;
+
+    String result;
+    JSONObject obj;
+    ArrayList<Datalist> list;
+    Datalist item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
         mVoiceBtn = findViewById(R.id.voiceBtn);
         mTransferBtn = findViewById(R.id.transferBtn);
         mRouteBtn = findViewById(R.id.route);
+        mPathBtn = findViewById(R.id.path);
 
 
         showTmap();
@@ -136,6 +159,13 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
             }
         });
 
+        mPathBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getTheResult();
+            }
+        });
+
     }
 
     void Transfer_InFo() {
@@ -163,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
                         List<Double> ty = pathItemList.stream().map(pathItem -> pathItem.getTy()).collect(Collectors.toList());
                         List<String> tName = pathItemList.stream().map(pathItem -> pathItem.getTname()).collect(Collectors.toList());
 
+                        stationPoint = new TMapPoint(fy.get(0), fx.get(0));
 
                         for (int i = 0; i < tx.size(); i++) {
                             TMapMarkerItem destItem = new TMapMarkerItem();
@@ -412,6 +443,117 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
 
     }
 
+    String getPathData() {
+        TMapPoint p1 = tMapView.getLocationPoint();
+        TMapPoint p2 = Destination_Point;
+        String queryUrl = "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result";
+        org.json.JSONObject responseJson = null;
+        JsonObject params = new JsonObject();
 
+        try {
+            URL url = new URL(queryUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("appKey", "l7xx98299ca0fd2d41859cb522c8efcfc7c0");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter((conn.getOutputStream())))) {
+                JsonObject commands = new JsonObject();
+                JsonArray jsonArray = new JsonArray();
+
+                params.addProperty("startX", String.valueOf(p1.getLongitude()));
+                params.addProperty("startY", String.valueOf(p1.getLatitude()));
+                params.addProperty("endX", String.valueOf(stationPoint.getLongitude()));
+                params.addProperty("endY", String.valueOf(stationPoint.getLatitude()));
+                params.addProperty("reqCoordType", "WGS84GEO");
+                params.addProperty("resCoordType", "EPSG3857");
+                params.addProperty("startName", "출발지");
+                params.addProperty("endName", "도착지");
+                jsonArray.add(params);
+                commands.add("data", params);
+
+            /*Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonOutput = gson.toJson(commands);*/
+
+                //리퀘스트 파라미터
+                Log.i("API", params.toString());
+
+                bw.write(params.toString());
+                bw.flush();
+                bw.close();
+            }
+
+
+            int responseCode = conn.getResponseCode();
+            Log.i("API", String.valueOf(responseCode));
+            if (responseCode == 200) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                String line = "";
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+                responseJson = new org.json.JSONObject(sb.toString());
+                //리스폰스
+                Log.i("API", sb.toString());
+
+                return sb.toString();
+            }
+            //에러 코드 미완성
+        } catch (MalformedURLException e) {
+            return queryUrl;
+        } catch (IOException e) {
+            return queryUrl;
+        } catch (JSONException e) {
+            return queryUrl;
+        }
+        return queryUrl;
+    }
+
+    void getTheResult() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("thread", "thread is running");
+                result = getPathData();
+                JSONParser jsonParser = new JSONParser();
+                try {
+                    org.json.simple.JSONObject jsonObj = (org.json.simple.JSONObject) jsonParser.parse(result);
+                    org.json.simple.JSONArray parse_item = (JSONArray) jsonObj.get("features");
+                    Log.i("item", String.valueOf(parse_item.size()));
+                    list = new ArrayList<Datalist>();
+                    for (int i = 0; i < parse_item.size(); i++) {
+                        obj = (org.json.simple.JSONObject) parse_item.get(i);
+                        org.json.simple.JSONObject geo = (org.json.simple.JSONObject) obj.get("properties");
+                        item = new Datalist();
+                        item.setIndex(String.valueOf(geo.get("index")));
+                        item.setDescription((String) geo.get("description"));
+                        //Log.i("item", String.valueOf(geo.get("index")));
+                        //Log.i("item", (String) geo.get("description"));
+                        list.add(item);
+                    }
+                    //org.json.simple.JSONObject obj = (org.json.simple.JSONObject) parse_item.get(0);
+                    //Object value = obj.get("type");
+                    for (int i = 0; i < parse_item.size(); i++) {
+                        if(String.valueOf(list.get(i).description).length() > 10) {
+                            Log.i("path item", String.valueOf(list.get(i).description));
+                        }
+                    }
+                    for (int i = 0; i < parse_item.size(); i++) {
+                        Log.i("all item", String.valueOf(list.get(i).description));
+                    }
+
+                    //Log.i("tag", (String) value);
+
+                } catch (org.json.simple.parser.ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }
 

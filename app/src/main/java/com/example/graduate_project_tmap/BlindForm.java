@@ -60,12 +60,12 @@ public class BlindForm extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressDialog.dismiss();
                                     if (task.isSuccessful()) {
-
+                                        String type =  "Blind";
                                         User user = new User(binding.blindName.getText().toString(), binding.blindEmail.getText().toString(),
-                                                binding.blindPassword.getText().toString(), binding.blindAge.getText().toString(), binding.blindSex.getText().toString());
+                                                binding.blindPassword.getText().toString(), binding.blindAge.getText().toString(), binding.blindSex.getText().toString(), type);
 
                                         String uid = task.getResult().getUser().getUid();
-                                        database.getReference().child("Blind").child(uid).setValue(user);
+                                        database.getReference().child("User").child(uid).setValue(user);
 
 
                                         Toast.makeText(BlindForm.this, "회원가입이 성공적으로 완료되었습니다.", Toast.LENGTH_SHORT).show();

@@ -36,6 +36,7 @@ public class SignInActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     ProgressDialog progressDialog;
     GoogleSignInClient mGoogleSignInClient;
+    DatabaseReference db;
 
 
     int RC_SIGN_IN = 65;
@@ -95,6 +96,7 @@ public class SignInActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressDialog.dismiss();
                                     if (task.isSuccessful()) {
+                                        putFcnToken();
                                         Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                                         startActivity(intent);
                                     } else {
@@ -110,6 +112,7 @@ public class SignInActivity extends AppCompatActivity {
         });
 
         if (mAuth.getCurrentUser() != null) {
+            putFcnToken;
             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -155,6 +158,22 @@ public class SignInActivity extends AppCompatActivity {
                         } else {
                             Log.d(TAG, "signInWithCredential Failed", task.getException());
                         }
+                    }
+                });
+    }
+    private void putFcnToken(){
+        String userId = mAuth.getCurrentUser().getUid();
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if(!task.isSuccessful()){
+                            Log.w("BusFormToken", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+                        String token = task.getResult();
+                        db =  firebaseDatabase.getInstance().getReference();
+                        db.child("User").child(userId).child("fcn").setValue(token);
                     }
                 });
     }

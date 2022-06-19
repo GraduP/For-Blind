@@ -3,6 +3,7 @@ package com.example.graduate_project_tmap;
 import static android.service.controls.ControlsProviderService.TAG;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,9 +11,12 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,6 +77,22 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
+
+    double cur_latitude;
+    double cur_longitude;
+    double location_gap;
+
+    int num = 0;
+
+    List<Double> fx; //탑승지 경도
+    List<Double> fy; // 탑승지 위도
+    List<String> fName;
+    List<String> busNum;
+    List<Double> tx;
+    List<Double> ty;
+    List<String> tName;
+    List<String> arrivalMessages;
+    private TextToSpeech tts;
 
     public List<StationItem> startStationItems; //startstation 정보를 받아오는  list (ArsId정보를 포함)
     private List<TransferItem> mTransferItems; // (routeNm=버스 번호 , fid = 타야하는 버스 정류소 id  = arrivalItems의 stid 와 비교해서 도착 시간을 갖고올 때 사용, Tname 하차지를 갖고 있음)
@@ -130,6 +151,50 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
 
         showTmap();
         forGps();
+
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(@NonNull Location location) { // 위치 정보가 바뀌었을 때
+                cur_longitude = location.getLongitude();
+                cur_latitude = location.getLatitude();
+                Log.d("현재 좌표: ", "현재 위도 :" + cur_latitude + "현재 경도" + cur_longitude);
+                if (tx != null && ty != null) {
+                    location_gap = distanceInKilometerByHaversine(cur_longitude, cur_latitude, tx.get(0), ty.get(0));
+                    Log.d("dist", "거리차이" + location_gap);
+                    if (location_gap <= 0.0055) // 탑승 정류장과 5.5m 이내이면
+                    {
+                        if (arrivalMessages != null) {
+                            bus_tts();
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onProviderDisabled(String provider) {
+                Toast.makeText(getApplicationContext(), "위치 정보 사용 불가. 공급자: " + provider, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                Toast.makeText(getApplicationContext(), "위치 정보 사용 가능. 공급자: " + provider, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                Toast.makeText(getApplicationContext(), provider + " " + status, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+     /*   LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        lm.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                10000,
+                0,
+                locationListener
+        );
+*/
+
+
 
         mVoiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -555,5 +620,47 @@ public class MainActivity extends AppCompatActivity implements TMapGpsManager.on
             }
         }).start();
     }
+
+        //위도 y좌표  경도 x좌표
+        //거리 측정 함수
+        public static double distanceInKilometerByHaversine(double cur_longitude ,double cur_latitude,
+        double st_longitude, double st_latitude)
+        {
+            double distance;
+            double radius = 6371; // 지구 반지름(km)
+            double toRadian = Math.PI / 180;
+
+            double deltaLatitude = Math.abs(st_latitude - cur_latitude) * toRadian;
+            double deltaLongitude = Math.abs(st_longitude - cur_longitude) * toRadian;
+
+            double sinDeltaLat = Math.sin(deltaLatitude / 2);
+            double sinDeltaLng = Math.sin(deltaLongitude / 2);
+            double squareRoot = Math.sqrt(
+                    sinDeltaLat * sinDeltaLat +
+                            Math.cos(cur_latitude * toRadian) * Math.cos(st_latitude * toRadian) * sinDeltaLng * sinDeltaLng);
+            distance = 2 * radius * Math.asin(squareRoot);
+            return distance;
+        }
+        //버스 도착 시간 TTS 함수
+        public void bus_tts()
+        {
+            String busNm = busNum.get(0);
+            String text = arrivalMessages.get(0);
+            text = busNm + "번 버스가" +   text + "에 위치해 있습니다.";
+            Log.d("test_tts" , text);
+            tts.setPitch(0.9f);
+            tts.setSpeechRate(1.0f);
+            tts.speak(text,TextToSpeech.QUEUE_FLUSH,null ,null);
+        }
+
+        @Override
+        public void onDestroy() {
+            if (tts != null) {
+                tts.stop();
+                tts.shutdown();
+                tts = null;
+            }
+            super.onDestroy();
+        }
 }
 

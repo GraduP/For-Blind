@@ -63,12 +63,12 @@ public class BusForm extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressDialog.dismiss();
                                     if (task.isSuccessful()) {
-
+                                        String type = "Driver"
                                         User user = new User(binding.busName.getText().toString(), binding.busEmail.getText().toString(),
-                                                binding.busPassword.getText().toString(), binding.busNum.getText().toString(), binding.busage.getText().toString(), binding.busSex.getText().toString());
+                                                binding.busPassword.getText().toString(), binding.busNum.getText().toString(), binding.busage.getText().toString(), binding.busSex.getText().toString() , type);
 
                                         String uid = task.getResult().getUser().getUid();
-                                        database.getReference().child("Driver").child(uid).setValue(user);
+                                        database.getReference().child("User").child(uid).setValue(user);
 
 
                                         Toast.makeText(BusForm.this, "회원가입이 성공적으로 완료되었습니다.", Toast.LENGTH_SHORT).show();

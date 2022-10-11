@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/busview"
+    android:padding="12dp"
+    android:weightSum="10">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_marginStart="20dp"
+        app:srcCompat="@drawable/bus" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="12"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_marginStart="10dp"
+                android:id="@+id/routeNm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/gangwon"
+                android:singleLine="true"
+                android:text="번호"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusable="true"
+                android:textColor="@color/black"
+                android:textSize="28dp" />
+
+            <TextView
+                android:id="@+id/station"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/gangwon"
+                android:singleLine="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusableInTouchMode="true"
+                android:text="정류장"
+                android:focusable="true"
+                android:textColor="@color/black"
+                android:textSize="28dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/gangwon"
+                android:singleLine="true"
+                android:text="소요시간"
+                android:focusable="true"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/transferNm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/gangwon"
+                android:singleLine="true"
+                android:focusable="true"
+                android:text="환승횟수"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+
+    <!-->
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="168dp"
+        android:background="#EBEBEB"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+
+        <TextView
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:ellipsize="marquee"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:ellipsize="marquee"
+            android:singleLine="true" />
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:text="time"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:text="fname"
+        android:textSize="32sp" />
+      <TextView
+          android:id="@+id/fy"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:layout_constraintBottom_toBottomOf="parent"/>
+  <!-->

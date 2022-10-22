@@ -51,7 +51,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationClient;
     private LocationRequest locationRequest;
-
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +68,11 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-        RecyclerView mRecyclerView = findViewById(R.id.recyclerview); // 리사이클러뷰 참조
+        mRecyclerView = findViewById(R.id.recyclerview); // 리사이클러뷰 참조
         RecyclerViewDeco itemDeco = new RecyclerViewDeco(20);
         mRecyclerView.addItemDecoration(itemDeco);
         Rylist = new ArrayList<>(); //리사이클러뷰에 사용되는 ArrayList
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((Context) this); //리사이클러뷰에서 사용되는 레이아웃 매니저
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((Context) this.getApplicationContext()); //리사이클러뷰에서 사용되는 레이아웃 매니저
         mRecyclerView.setLayoutManager(linearLayoutManager); //셋 매니저
         myAdapter = new RecyclerViewAdapter(Rylist); //뷰와 데이터를 연결해주는 어댑터 데이터로 Rylist가 사용
         myAdapter.setEndX(endX);
@@ -135,6 +135,7 @@ public class MainActivity2 extends AppCompatActivity {
                                 addItem(time , Fname , temp) ;
                             }
                         }
+
                         myAdapter.notifyDataSetChanged(); //어뎁터에 있는 데이터 셋이 바뀌면 화면에 바뀐 데이터를 띄워줌
                     }
                     else{

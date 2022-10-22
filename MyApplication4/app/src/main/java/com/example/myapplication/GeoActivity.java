@@ -95,6 +95,7 @@ public class GeoActivity extends AppCompatActivity implements SensorEventListene
 
     Intent intent;
     private TransferItem transferlist;
+    private int transferIndex = 0;
 
     //거리 확인을 위한 임의 텍스트뷰
     TextView cur;
@@ -130,12 +131,9 @@ public class GeoActivity extends AppCompatActivity implements SensorEventListene
 
 
         intent = getIntent();
-       // end_lon = intent.getStringExtra("endX");
-       // end_lat = intent.getStringExtra("endY");
-
         transferlist = (TransferItem) intent.getSerializableExtra("transferItem"); //transferlist추출 -> 이게 주 데이터
-        end_lon = transferlist.getPathItemList().get(0).getFx();
-        end_lat = transferlist.getPathItemList().get(0).getFy();
+        end_lon = (String) intent.getSerializableExtra("endX");
+        end_lat = (String) intent.getSerializableExtra("endY");
         for (int i = 0; i < transferlist.getPathItemList().size(); i++) {
             Log.d("버스번호", transferlist.getPathItemList().get(i).getRouteNm());
             Log.d("itemTransferItem fname", transferlist.getPathItemList().get(i).getFname());
@@ -146,8 +144,6 @@ public class GeoActivity extends AppCompatActivity implements SensorEventListene
         //걸음 수 측정
         nStep = 0;
         stepToGo = 0;
-
-        Log.i("거리계산", String.valueOf(calD(35.883557, 35.883530, 128.663303, 128.663289)));
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
@@ -175,16 +171,6 @@ public class GeoActivity extends AppCompatActivity implements SensorEventListene
 
 
 
-
-
-
-
-
-
-
-
-
-
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if(location != null){
                 lat = location.getLatitude();
@@ -203,7 +189,12 @@ public class GeoActivity extends AppCompatActivity implements SensorEventListene
             @Override
             public void onClick(View v) {
                 if(distance!=0){    //출발 이후라고  가정, 목적지가 있는 경우
-                    guideText = "약 "+(int)calD(nextLat, lat2, nextLon, lon2)/(realD/nStep)+"걸음 남았습니다.";
+                    if(nStep==0){
+                        guideText = "약 "+(int)(calD(nextLat, lat2, nextLon, lon2)/0.65)+"걸음 남았습니다.";
+                    }
+                    else {
+                        guideText = "약 " + (int) (calD(nextLat, lat2, nextLon, lon2) / (realD / nStep)) + "걸음 남았습니다.";
+                    }
                     guide.setText(guideText);
                     Log.i("걸음", guideText);
                 }
@@ -477,7 +468,7 @@ public class GeoActivity extends AppCompatActivity implements SensorEventListene
 
                         //다음 노드 도착 시 (5m 이내 접근)
                         Log.i("노드까지의 거리", String.valueOf(calD(nextLat, lat2, nextLon, lon2)));
-                        if(calD(nextLat, lat2, nextLon, lon2)<5){
+                        if(calD(nextLat, lat2, nextLon, lon2)<30){
                             //진동
                             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(500);
@@ -487,6 +478,12 @@ public class GeoActivity extends AppCompatActivity implements SensorEventListene
                             if(nextIndex+1 == totalIndex){ //마지막 노드에 도착한 경우 //activity 전환
                                 Log.i("도착", "end");
                                 guideText = "도착 완료";
+                                Intent intent = new Intent(GeoActivity.this, busActivity.class);
+                                intent.putExtra("endX" , end_lon);
+                                intent.putExtra("endY", end_lat);
+                                intent.putExtra("transferItem", transferlist);
+                                startActivity(intent);
+                                finish();
                             }
                             else{   //경유지인 경우
                                 distance = 0;
@@ -578,7 +575,12 @@ public class GeoActivity extends AppCompatActivity implements SensorEventListene
                                 }
 
                                 //n 걸음 이동
-                                stepToGo = (int)(distance/(realD/nStep));
+                                if(nStep==0){
+                                    stepToGo = (int)(distance/0.65);
+                                }
+                                else {
+                                    stepToGo = (int)(distance/(realD/nStep));
+                                }
                                 guideText = turnText + "약 "+stepToGo+"걸음 이동하세요";
                                 realD = 0;  //노드 간 이동거리 초기화
                                 nStep = 0;  //노드 간 걸음 수 초기화

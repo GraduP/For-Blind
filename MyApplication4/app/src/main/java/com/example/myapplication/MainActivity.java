@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ItemsEntity> item;  //검색 API 결과를 받아들일 어레이리스트
     private SearchAPI searchAPI; //검색 API 호출에 사용하는 클라이언트
 
-    private String startX; //= "126.9243"; // 홍익대학교 앞
-    private String startY; // = "37.5528";
+    private String startX = "126.9243"; // 홍익대학교 앞
+    private String startY  = "37.5528";
 
     private FusedLocationProviderClient fusedLocationClient;
     private LocationRequest locationRequest;
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+        /*fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if(location != null){
 
                 startX = String.valueOf(location.getLongitude());
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e("??", startX);
             }
-        });
+        });*/
 
         if(Build.VERSION.SDK_INT >= 23){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET,

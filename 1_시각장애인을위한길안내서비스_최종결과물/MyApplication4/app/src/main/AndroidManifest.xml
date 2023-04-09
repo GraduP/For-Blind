@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.myapplication">
+    <!-- 위치 정보 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> <!-- 센서 -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" /> <!-- 카메라 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" /> <!-- 티맵 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 진동 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".PopIn"
+            android:exported="false" />
+        <activity
+            android:name=".busActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
+        <activity android:name=".Login2"
+            android:exported="true"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="%{MAPS_API_KEY}" />
+
+        <activity
+            android:name=".GeoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".PermissionActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".SendNotificationActivity"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".BlindFormActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BusFormActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".SignInActivity"
+            android:exported="true">
+
+        </activity>
+
+
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true" />
+
+        <!--객체
+        <activity android:name="DetectorActivity"
+            android:exported="true"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="org.tensorflow.codelabs.objectdetection.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>-->
+
+        <!--텐서플로우 객체 인식-->
+        <activity
+            android:name=".TestActivity"
+            android:clearTaskOnLaunch="true"
+            android:theme="@style/Theme.MyApplication"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:rotationAnimation="seamless"
+            android:resizeableActivity="true"
+            android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize"
+            tools:targetApi="O">
+
+            <!-- Declare notch support -->
+            <meta-data android:name="android.notch_support" android:value="true"/>
+        </activity>
+
+        <activity android:name=".ChoiceActivity"/>
+
+        <service
+            android:name=".fcm.CloudMessaging"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <padding
+                android:bottom="2dp"
+                android:right="2dp"
+                android:left="2dp"
+                android:top="2dp"
+                />
+            <solid android:color = "@color/buttonshadow"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <padding
+                android:bottom="2dp"
+                android:right="2dp"
+                android:left="2dp"
+                android:top="2dp"
+                />
+            <solid android:color = "@color/buttonbackgroundcolor"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <padding
+                android:bottom="2dp"
+                android:right="2dp"
+                android:left="2dp"
+                android:top="2dp"
+                />
+            <solid android:color = "#CCB575"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <padding
+                android:bottom="2dp"
+                android:right="2dp"
+                android:left="2dp"
+                android:top="2dp"
+                />
+            <solid android:color =  "#E1C883"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="oval">
+            <padding
+                android:bottom="2dp"
+                android:right="2dp"
+                android:left="2dp"
+                android:top="2dp"
+                />
+            <solid android:color = "@color/yellobuttonColor"/>
+        </shape>
+    </item>
+</layer-list>

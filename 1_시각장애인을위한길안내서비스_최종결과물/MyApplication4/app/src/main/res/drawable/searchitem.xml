@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/buttonshadow" />
+            <size
+                android:width="360dp"
+                android:height="30dp" />
+            <corners android:radius="20dp"/>
+            <padding
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/buttonbackgroundcolor" />
+            <size
+                android:width="360dp"
+                android:height="30dp" />
+            <corners android:radius="20dp"/>
+            <padding
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"/>
+        </shape>
+
+    </item>
+    <item android:top="1dp" android:bottom="1dp" >
+        <shape android:shape="rectangle">
+            <solid android:color= "#CCB575"/>
+            <size
+                android:width="360dp"
+                android:height="30dp" />
+            <corners android:radius="20dp"/>
+            <padding
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"/>
+        </shape>
+    </item>
+    <item android:top="1dp" android:bottom="1dp" >
+        <shape android:shape="rectangle">
+            <solid android:color="#E1C883"/>
+            <size
+                android:width="360dp"
+                android:height="30dp" />
+            <corners android:radius="20dp"/>
+            <padding
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"/>
+        </shape>
+    </item>
+    <item android:top="1dp" android:bottom="1dp" >
+        <shape android:shape="rectangle">
+            <solid android:color="@color/yellobuttonColor"/>
+            <size
+                android:width="360dp"
+                android:height="30dp" />
+            <corners android:radius="20dp"/>
+            <padding
+                android:top="1dp"
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"/>
+        </shape>
+    </item>
+</layer-list>
+
+

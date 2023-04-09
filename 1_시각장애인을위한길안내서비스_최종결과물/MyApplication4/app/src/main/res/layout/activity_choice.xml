@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".SignInActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/roadButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="길 찾기" />
+
+    <Button
+        android:id="@+id/camButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="장애물 인식" />
+
+
+</LinearLayout>

@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".busActivity"
+    android:orientation="vertical"
+    android:id="@+id/busRootView"
+    android:background="@color/backgroundcolor"
+    android:gravity="center">
+
+
+    <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/textColor"
+            android:ems="10"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:padding="10dp"
+           />
+</LinearLayout>

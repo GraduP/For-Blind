@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/searchitem"
+    android:elevation="5dp"
+    >
+    <!-->수정완<!-->
+    <ImageView
+        android:layout_marginStart="3dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:src="@android:drawable/ic_menu_search"
+        />
+
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="동대문디지털프라자"
+        android:fontFamily="@font/gangwon"
+        android:padding="10dp"
+        android:textColor="@color/backgroundcolor"
+        android:textSize="24dp" />
+
+
+
+</LinearLayout>

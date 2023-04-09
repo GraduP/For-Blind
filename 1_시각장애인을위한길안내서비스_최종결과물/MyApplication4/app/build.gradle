@@ -1,0 +1,111 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+
+    id 'kotlin-android'
+    id 'androidx.navigation.safeargs'
+    id 'de.undercouch.download'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.myapplication"
+        minSdk 29
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.4' // Retrofit 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4' // Gson 변환기 라이브러리
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.4' // Scalars 변환기 라이브러리
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.firebase:firebase-database:20.0.6'
+    implementation 'androidx.navigation:navigation-fragment:2.5.2'
+    implementation 'androidx.navigation:navigation-ui:2.5.2'
+    implementation 'com.google.firebase:firebase-auth:21.0.8'
+    implementation 'com.google.firebase:firebase-firestore:24.3.1'
+    implementation 'com.google.firebase:firebase-messaging:23.0.8'
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+    implementation 'androidx.exifinterface:exifinterface:1.3.2'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+
+    //추가
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-tasks:16.0.1'
+
+    implementation files('libs\\com.skt.Tmap_1.71.jar')
+    //implementation files('libs\\gson-2.8.5.jar')
+    implementation files('libs\\json-simple-1.1.1.jar')
+
+
+    //객체 탐지 추가
+    //implementation 'org.tensorflow:tensorflow-lite-task-vision:0.3.1'
+
+    //텐서플로우 객체 탐지
+    // Kotlin lang
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+
+    // App compat and UI things
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+
+    /*// Navigation library
+    def nav_version = "2.3.5"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"*/
+
+    // CameraX core library
+    def camerax_version = '1.1.0-beta03'
+    implementation "androidx.camera:camera-core:$camerax_version"
+
+    // CameraX Camera2 extensions
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+
+    // CameraX Lifecycle library
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+
+    // CameraX View class
+    implementation "androidx.camera:camera-view:$camerax_version"
+
+    //WindowManager
+    implementation 'androidx.window:window:1.0.0-alpha09'
+
+
+    implementation 'org.tensorflow:tensorflow-lite-task-vision-play-services:0.4.2'
+    implementation 'com.google.android.gms:play-services-tflite-gpu:16.0.0'
+}
